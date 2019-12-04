@@ -12,6 +12,7 @@ console.log('config.js:\n%s', JSON.stringify(config, null, '  '));
 
 const fs = require('fs');
 const https = require('https');
+const http = require('http');
 const url = require('url');
 const protoo = require('protoo-server');
 const mediasoup = require('mediasoup');
@@ -364,7 +365,8 @@ async function runHttpsServer()
 		key  : fs.readFileSync(config.https.tls.key)
 	};
 
-	httpsServer = https.createServer(tls, expressApp);
+	httpsServer = process.env.MEDIASOUP_NO_HTTPS
+		? http.createServer(expressApp) : https.createServer(tls, expressApp);
 
 	await new Promise((resolve) =>
 	{

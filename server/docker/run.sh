@@ -36,4 +36,4 @@ docker run \
 	-e MEDIASOUP_WORKER_BIN \
 	-it \
 	--rm \
-	mediasoup-demo:latest
+	barcoeducation/mediasoup-demo:latest
